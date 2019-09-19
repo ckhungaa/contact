@@ -1,0 +1,52 @@
+{
+  "TableName": "Contact",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "Id",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "CreatedDate",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "ModifiedDate",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "OwnerId",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "UserId",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "UserName",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "AvatarId",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "ContactType",
+      "AttributeType": "N"
+    },
+    {
+      "AttributeName": "PhoneNumber",
+      "AttributeType": "S"
+    }
+  ],
+  "KeySchema": [
+    {
+      "KeyType": "HASH",
+      "AttributeName": "OwnerId"
+    },
+    {
+      "KeyType": "RANGE",
+      "AttributeName": "UserId"
+    }
+  ],
+  "BillingMode": "PAY_PER_REQUEST"
+}

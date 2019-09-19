@@ -1,0 +1,41 @@
+{
+  "Table": {
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "OwnerId",
+        "AttributeType": "S"
+      },
+      {
+        "AttributeName": "UserId",
+        "AttributeType": "S"
+      }
+    ],
+    "TableName": "Contact",
+    "KeySchema": [
+      {
+        "AttributeName": "OwnerId",
+        "KeyType": "HASH"
+      },
+      {
+        "AttributeName": "UserId",
+        "KeyType": "RANGE"
+      }
+    ],
+    "TableStatus": "ACTIVE",
+    "CreationDateTime": 1568797796.217,
+    "ProvisionedThroughput": {
+      "LastIncreaseDateTime": 0.0,
+      "LastDecreaseDateTime": 0.0,
+      "NumberOfDecreasesToday": 0,
+      "ReadCapacityUnits": 1,
+      "WriteCapacityUnits": 1
+    },
+    "TableSizeBytes": 0,
+    "ItemCount": 0,
+    "TableArn": "arn:aws:dynamodb:ap-southeast-1:000000000000:table/Contact",
+    "BillingModeSummary": {
+      "BillingMode": "PROVISIONED",
+      "LastUpdateToPayPerRequestDateTime": 0.0
+    }
+  }
+}
