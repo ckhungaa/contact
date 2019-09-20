@@ -2,12 +2,13 @@ package service
 
 import (
 	"context"
-	"github.com/ckhungaa/common/logs"
+	"github.com/ckhungaa/common/utils/logs"
 	"github.com/ckhungaa/contact/domain/entity"
 	"github.com/ckhungaa/contact/domain/repository"
 )
 
-var log  = logs.NewLogger("ContactService")
+var log  = logs.NewLogger("service")
+
 // Service service
 type Service interface {
 	FindContactById(ctx context.Context, id string) (*entity.Contact, error)
@@ -22,10 +23,12 @@ func ProvideService(ctx context.Context, repo repository.Repository) (Service, e
 }
 
 func (s *ServiceImpl) FindContactById(ctx context.Context, id string) (*entity.Contact, error) {
+	log.Infof(ctx, "FindContactById begin, id:%s", id)
 	var contact entity.Contact
 	if err := s.repo.FindContactById(ctx, id, &contact); err != nil {
-		log.Errorf(ctx, "failed to find contact by id:%v", err)
+		log.Errore(ctx, err, "failed to find contact by id")
 		return nil, err
 	}
+	log.Infof(ctx, "FindContactById end")
 	return &contact, nil
 }

@@ -7,8 +7,8 @@ package main
 
 import (
 	"context"
-	"github.com/ckhungaa/common/config"
-	"github.com/ckhungaa/common/domain/repositories"
+	"github.com/ckhungaa/common/component/configs"
+	"github.com/ckhungaa/common/component/repos"
 	"github.com/ckhungaa/contact/domain/repository"
 	"github.com/ckhungaa/contact/domain/service"
 	"github.com/ckhungaa/contact/server"
@@ -17,13 +17,13 @@ import (
 // Injectors from inject.go:
 
 func injectSServer(ctx context.Context) (*server.ContactServer, error) {
-	decoderConfigOption := config.ProvideDecodeOption(ctx)
-	store := config.ProvideStore(ctx, decoderConfigOption)
-	repositoriesConfig, err := repositories.ProvideConfig(ctx, store)
+	decoderConfigOption := configs.ProvideDecodeOption(ctx)
+	store := configs.ProvideStore(ctx, decoderConfigOption)
+	config, err := repos.ProvideConfig(ctx, store)
 	if err != nil {
 		return nil, err
 	}
-	baseRepository, err := repositories.ProvideBaseRepository(ctx, repositoriesConfig)
+	baseRepository, err := repos.ProvideBaseRepository(ctx, config)
 	if err != nil {
 		return nil, err
 	}

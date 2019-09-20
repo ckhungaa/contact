@@ -2,7 +2,12 @@ package server
 
 import (
 	"context"
+	"github.com/ckhungaa/common/utils/logs"
 	"github.com/ckhungaa/contact/domain/service"
+)
+
+var (
+	log = logs.NewLogger("server")
 )
 
 type ContactServer struct {

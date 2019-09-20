@@ -2,21 +2,21 @@ package repository
 
 import (
 	"context"
-	"github.com/ckhungaa/common/domain/repositories"
-	"github.com/ckhungaa/common/logs"
+	"github.com/ckhungaa/common/component/repos"
+	"github.com/ckhungaa/common/utils/logs"
 	"github.com/ckhungaa/contact/domain/entity"
 )
 
-var log  = logs.NewLogger("ContactRepository")
+var log  = logs.NewLogger("repository")
 
 type Repository interface {
 	FindContactById(ctx context.Context, id string, result *entity.Contact) error
 }
 
 type RespositoryImpl struct {
-	*repositories.BaseRepository
+	*repos.BaseRepository
 }
 
-func ProvideRepository(ctx context.Context, repo *repositories.BaseRepository) (Repository, error) {
+func ProvideRepository(ctx context.Context, repo *repos.BaseRepository) (Repository, error) {
 	return &RespositoryImpl{BaseRepository: repo}, nil
 }

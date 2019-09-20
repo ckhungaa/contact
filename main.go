@@ -1,10 +1,10 @@
 package main
 
 import (
-	"context"
+	"github.com/ckhungaa/common/utils/contexts"
+	"github.com/ckhungaa/common/utils/logs"
 	"github.com/ckhungaa/proto/proto"
 	"google.golang.org/grpc"
-	"log"
 	"net"
 )
 
@@ -12,18 +12,22 @@ const (
 	port = ":28080"
 )
 
-func main() {
+var (
+	log = logs.NewLogger("main")
+)
 
-	ctx := context.TODO()
-	log.Printf("run contact server")
+func main() {
+	ctx := contexts.NewContext("main")
+	log.Infof(ctx, "main begin")
+
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		log.Fatale(ctx, err, "failed to listen", )
 	}
 	s := grpc.NewServer()
 	contactService, _ := injectSServer(ctx)
 	proto.RegisterContactServerServer(s, contactService)
 	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+		log.Fatale(ctx, err, "failed to serve")
 	}
 }

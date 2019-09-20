@@ -6,10 +6,12 @@ import (
 )
 
 func (r *RespositoryImpl) FindContactById(ctx context.Context, id string, result *entity.Contact) error{
+	log.Infof(ctx, "FindContactById begin, id:%s", id)
 	query, err := NewContactQuery(ctx, id)
 	if err != nil {
-		log.Errorf(ctx, "failed to parse id value: %v", err)
+		log.Errore(ctx, err, "failed to create query", )
 		return err
 	}
+	log.Infof(ctx, "FindContactById end")
 	return r.FindById(ctx, query, result)
 }

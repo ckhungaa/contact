@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/ckhungaa/common/domain/entities"
+	"github.com/ckhungaa/common/utils/entities"
 	"github.com/ckhungaa/contact/domain/entity"
 	"github.com/ckhungaa/proto/proto"
 	"github.com/guregu/dynamo"

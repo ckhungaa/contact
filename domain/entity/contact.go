@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/ckhungaa/common/domain/entities"
+	"github.com/ckhungaa/common/utils/entities"
 	"github.com/ckhungaa/proto/proto"
 	"github.com/pkg/errors"
 )

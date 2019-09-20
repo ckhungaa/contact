@@ -4,8 +4,8 @@ package main
 
 import (
 	"context"
-	"github.com/ckhungaa/common/config"
-	"github.com/ckhungaa/common/domain/repositories"
+	"github.com/ckhungaa/common/component/configs"
+	"github.com/ckhungaa/common/component/repos"
 	"github.com/ckhungaa/contact/domain/repository"
 	"github.com/ckhungaa/contact/domain/service"
 	"github.com/ckhungaa/contact/server"
@@ -14,8 +14,8 @@ import (
 
 func injectSServer(ctx context.Context) (*server.ContactServer, error) {
 	panic(wire.Build(
-		config.WireSet,
-		repositories.WireSet,
+		configs.WireSet,
+		repos.WireSet,
 		repository.ProvideRepository,
 		service.ProvideService,
 		server.ProvideContact,

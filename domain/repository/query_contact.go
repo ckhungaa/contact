@@ -2,11 +2,11 @@ package repository
 
 import (
 	"context"
-	"github.com/ckhungaa/common/domain/repositories"
+	"github.com/ckhungaa/common/component/repos"
 )
 
 type ContactQuery struct {
-	*repositories.PartitionDBKey
+	*repos.PartitionDBKey
 }
 
 func (q *ContactQuery) table() string {
@@ -26,9 +26,9 @@ func (q *ContactQuery) TableName() string {
 }
 
 func NewContactQuery(ctx context.Context, id string) (*ContactQuery, error) {
-	key, err := repositories.PartitionDBKeyFromId(ctx, id)
+	key, err := repos.PartitionDBKeyFromId(ctx, id)
 	if err != nil {
-		log.Errorf(ctx, "failed to parse id into PartitionDBKey: %v", err)
+		log.Errore(ctx, err, "failed to parse id(%s) into PartitionDBKey", id)
 		return nil, err
 	}
 	return &ContactQuery{PartitionDBKey: key}, nil
