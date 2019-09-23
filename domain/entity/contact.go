@@ -3,7 +3,6 @@ package entity
 import (
 	"github.com/ckhungaa/common/utils/entities"
 	"github.com/ckhungaa/proto/proto"
-	"github.com/pkg/errors"
 )
 
 type Contact struct {
@@ -21,7 +20,7 @@ func (m *Contact) ToProto() (*proto.ContactResponse, error){
 
 	audit, err := m.Audit.ToProto()
 	if err != nil {
-		return nil, errors.Wrap(err, "can not convert audit into proto audit")
+		return nil, err
 	}
 	return &proto.ContactResponse{
 		Audit:               audit,
