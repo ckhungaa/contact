@@ -8,6 +8,5 @@ require (
 	github.com/ckhungaa/proto/proto v0.0.0-20190919101533-25ec38ce7bdc
 	github.com/google/wire v0.3.0
 	github.com/guregu/dynamo v1.4.1
-	github.com/pkg/errors v0.8.1
 	google.golang.org/grpc v1.23.1
 )

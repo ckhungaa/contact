@@ -1,0 +1,19 @@
+apiVersion: skaffold/v1beta14
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - image: minikube/k8s-skaffold/doki-contact
+deploy:
+  helm:
+    releases:
+      - name: doki-contact
+        chartPath: resources/chart
+        values:
+          image: minikube/k8s-skaffold/doki-contact
+          ##          name: doki-contact
+          ##          replicas: 1
+
+        ##          port: 8888
+        ##          imagePullPolicy: IfNotPresent

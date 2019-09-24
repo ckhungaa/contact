@@ -1,0 +1,4 @@
+name: doki-contact
+replicas: 1
+port: 8888
+imagePullPolicy: Never
