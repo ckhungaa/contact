@@ -20,3 +20,6 @@ spec:
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           ports:
             - containerPort: {{ .Values.port }}
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.name }}-config

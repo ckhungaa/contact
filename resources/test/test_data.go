@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/ckhungaa/common/utils/entities"
 	"github.com/ckhungaa/contact/domain/entity"
@@ -42,9 +43,10 @@ var data = []*entity.Contact{
 	},
 }
 func main() {
+	log.Printf("begin")
 	endPoint := "http://localhost:4569"
 	region := "ap-southeast-1"
-	db := dynamo.New(session.New(), &aws.Config{Endpoint: &endPoint, Region: aws.String(region)}) //TODO: fix when go prod
+	db := dynamo.New(session.New(), &aws.Config{Endpoint: &endPoint, Region: aws.String(region), Credentials: credentials.NewStaticCredentials("abc","abc","abc")}) //TODO: fix when go prod
 	if err := db.CreateTable("Contact", entity.Contact{}).OnDemand(true).Run(); err != nil {
 		log.Fatalf("failed to create table:%v\n", err)
 	}
@@ -55,5 +57,6 @@ func main() {
 		}
 	}
 
+	log.Printf("end")
 
 }

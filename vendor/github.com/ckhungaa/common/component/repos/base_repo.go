@@ -5,8 +5,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/ckhungaa/common/component/configs"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/google/wire"
 	"github.com/guregu/dynamo"
+	"log"
 )
 
 var (
@@ -29,6 +31,8 @@ func ProvideConfig(ctx context.Context, configStore configs.Store) (*Config, err
 	if err := configStore.GetConfig(ctx, &result); err != nil {
 		return nil, err
 	}
+
+	log.Printf("result: %s", result.EndPoint)
 	return &result, nil
 }
 
@@ -37,7 +41,7 @@ type BaseRepository struct {
 }
 
 func ProvideBaseRepository(ctx context.Context, cnf *Config) (*BaseRepository, error) {
-	db := dynamo.New(session.New(), &aws.Config{Endpoint: &cnf.EndPoint, Region: aws.String(cnf.Region)}) //TODO: fix when go prod
+	db := dynamo.New(session.New(), &aws.Config{Endpoint: &cnf.EndPoint, Region: aws.String(cnf.Region), Credentials:credentials.NewStaticCredentials("abc", "abc", "abc")}) //TODO: fix when go prod
 	return &BaseRepository{db: db}, nil
 }
 

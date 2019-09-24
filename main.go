@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	port = ":28080"
+	port = ":8888"
 )
 
 var (
@@ -18,7 +18,7 @@ var (
 
 func main() {
 	ctx := contexts.NewContext("main")
-	log.Infof(ctx, "main begin")
+	log.Infof(ctx, "main begin 123")
 
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
