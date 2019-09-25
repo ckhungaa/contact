@@ -18,9 +18,10 @@ profiles:
           - name: doki-contact
             chartPath: resources/helm
             namespace: app
+            values:
+              image: minikube/k8s-skaffold/doki-contact
             setValues:
-              image: "minikube/k8s-skaffold/doki-contact"
-              name: "doki-contact"
+              name: doki-contact
               replicas: 1
               port: 8888
-              imagePullPolicy: "Never"
+              imagePullPolicy: Never
