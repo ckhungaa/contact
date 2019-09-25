@@ -1,19 +1,26 @@
 apiVersion: skaffold/v1beta14
 kind: Config
-build:
-  tagPolicy:
-    sha256: {}
-  artifacts:
-    - image: minikube/k8s-skaffold/doki-contact
-deploy:
-  helm:
-    releases:
-      - name: doki-contact
-        chartPath: resources/chart
-        values:
-          image: minikube/k8s-skaffold/doki-contact
-          ##          name: doki-contact
-          ##          replicas: 1
 
-        ##          port: 8888
-        ##          imagePullPolicy: IfNotPresent
+profiles:
+  - name: local
+    activation:
+      - kubeContext: minikube
+    build:
+      tagPolicy:
+        dateTime:
+          format: "2006-01-02_15-04-05"
+          timezone: "Local"
+      artifacts:
+        - image: minikube/k8s-skaffold/doki-contact
+    deploy:
+      helm:
+        releases:
+          - name: doki-contact
+            chartPath: resources/helm
+            namespace: app
+            setValues:
+              image: "minikube/k8s-skaffold/doki-contact"
+              name: "doki-contact"
+              replicas: 1
+              port: 8888
+              imagePullPolicy: "Never"
